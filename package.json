@@ -1,0 +1,12 @@
+{
+  "name": "template",
+  "homepage": "https://github.com/rspack-contrib/rspack-binding-template",
+  "bugs": {
+    "url": "https://github.com/rspack-contrib/rspack-binding-template/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rspack-contrib/rspack-binding-template.git"
+  },
+  "packageManager": "pnpm@10.12.4"
+}

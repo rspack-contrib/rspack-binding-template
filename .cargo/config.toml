@@ -1,0 +1,21 @@
+[target.'cfg(target_vendor = "apple")']
+rustflags = ["-C", "link-args=-Wl,-undefined,dynamic_lookup,-no_fixup_chains,-all_load"]
+
+[target.'cfg(target_os = "linux")']
+rustflags = ["-C", "link-args=-Wl,--warn-unresolved-symbols"]
+
+[target.'cfg(target_os = "windows")']
+rustflags = [
+  "-C", "link-args=/FORCE", 
+  "-C", "link-args=/NODEFAULTLIB:libucrt.lib", 
+  "-C", "link-args=/DEFAULTLIB:ucrt.lib"
+]
+
+[target.x86_64-pc-windows-msvc]
+rustflags = ["-C", "target-feature=+crt-static"]
+
+[target.i686-pc-windows-msvc]
+rustflags = ["-C", "target-feature=+crt-static"]
+
+[target.aarch64-pc-windows-msvc]
+rustflags = ["-C", "target-feature=+crt-static"]
