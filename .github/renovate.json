@@ -1,0 +1,31 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "enabledManagers": ["pnpm"],
+  "packageRules": [
+    {
+      "matchPackageNames": ["@napi-rs/**"],
+      "enabled": false,
+      "description": "Disable updates for napi-rs packages"
+    },
+    {
+      "matchPackageNames": ["napi", "napi-**"],
+      "enabled": false,
+      "description": "Disable updates for napi packages"
+    }
+  ],
+  "schedule": ["before 6am on monday"],
+  "timezone": "Asia/Shanghai",
+  "labels": ["dependencies"],
+  "assignees": [],
+  "reviewers": [],
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "semanticCommits": "enabled",
+  "semanticCommitType": "chore",
+  "semanticCommitScope": "deps",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 6am on monday"]
+  }
+}
