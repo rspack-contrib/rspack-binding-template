@@ -14,7 +14,7 @@
     "lint-staged": "lint-staged"
   },
   "devDependencies": {
-    "husky": "^8.0.3",
+    "husky": "^9.0.0",
     "lint-staged": "^15.2.0",
     "@taplo/cli": "^0.7.0"
   },
