@@ -1,26 +1,20 @@
 [package]
-name = "binding"
 edition.workspace = true
-publish = false
+name              = "binding"
+publish           = false
 
 [lib]
 crate-type = ["cdylib"]
 
 [dependencies]
-rspack_binding_builder = { workspace = true }
+rspack_binding_builder        = { workspace = true }
 rspack_binding_builder_macros = { workspace = true }
 
-rspack_core = { workspace = true }
+rspack_core  = { workspace = true }
+rspack_error = { workspace = true }
 
-napi = { workspace = true, features = [
-  "async",
-  "tokio_rt",
-  "serde-json",
-  "anyhow",
-  "napi7",
-  "compat-mode",
-] }
-napi-derive = { workspace = true, features = ["compat-mode"] }
+napi                = { workspace = true, features = ["async", "tokio_rt", "serde-json", "anyhow", "napi7", "compat-mode"] }
+napi-derive         = { workspace = true, features = ["compat-mode"] }
 napi-derive-backend = { workspace = true }
 
 [build-dependencies]

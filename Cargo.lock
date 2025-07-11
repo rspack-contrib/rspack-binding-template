@@ -245,6 +245,7 @@ dependencies = [
  "rspack_binding_builder",
  "rspack_binding_builder_macros",
  "rspack_core",
+ "rspack_error",
 ]
 
 [[package]]
