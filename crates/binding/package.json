@@ -1,7 +1,7 @@
 {
-  "name": "template-binding",
+  "name": "@rspack-template/binding",
   "scripts": {
-    "build": "napi build"
+    "build": "napi build --platform"
   },
   "devDependencies": {
     "@napi-rs/cli": "3.0.0-alpha.92",
@@ -9,6 +9,7 @@
     "typescript": "^5.8.3"
   },
   "napi": {
+    "binaryName": "binding",
     "targets": [
       "x86_64-apple-darwin",
       "x86_64-pc-windows-msvc",

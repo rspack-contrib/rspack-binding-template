@@ -8,12 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@rspack-template/binding':
+        specifier: workspace:*
+        version: link:crates/binding
       '@rspack/core':
         specifier: ^1.4.6
         version: 1.4.6
-      template-binding:
-        specifier: workspace:*
-        version: link:crates/binding
     devDependencies:
       '@taplo/cli':
         specifier: ^0.7.0

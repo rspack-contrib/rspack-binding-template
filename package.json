@@ -1,5 +1,5 @@
 {
-  "name": "template-core",
+  "name": "@rspack-template/core",
   "homepage": "https://github.com/rspack-contrib/rspack-binding-template",
   "bugs": {
     "url": "https://github.com/rspack-contrib/rspack-binding-template/issues"
@@ -14,13 +14,17 @@
     ".": "./lib/index.js",
     "./package.json": "./package.json"
   },
+  "files": [
+    "lib",
+    "package.json"
+  ],
   "scripts": {
     "prepare": "husky",
     "lint-staged": "lint-staged"
   },
   "dependencies": {
     "@rspack/core": "^1.4.6",
-    "template-binding": "workspace:*"
+    "@rspack-template/binding": "workspace:*"
   },
   "devDependencies": {
     "@taplo/cli": "^0.7.0",
