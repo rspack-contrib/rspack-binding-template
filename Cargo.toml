@@ -8,6 +8,9 @@ edition = "2021"
 [workspace.dependencies]
 rspack_core  = { version = "0.4.7-alpha.1" }
 rspack_error = { version = "0.4.7-alpha.1" }
+rspack_hook  = { version = "0.4.7-alpha.1" }
+
+rspack_sources = { version = "0.4.8" }
 
 rspack_binding_build          = { version = "0.4.7-alpha.1" }
 rspack_binding_builder        = { version = "0.4.7-alpha.1" }

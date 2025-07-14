@@ -7,7 +7,7 @@ export declare class ExternalObject<T> {
     [K: symbol]: T
   }
 }
-export declare function registerExamplePlugin(): void
+export declare function registerMyBannerPlugin(): void
 export declare class Assets {
   keys(): Array<string>
 }

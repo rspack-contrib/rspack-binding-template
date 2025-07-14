@@ -376,7 +376,7 @@ if (!nativeBinding) {
 }
 
 module.exports = nativeBinding
-module.exports.registerExamplePlugin = nativeBinding.registerExamplePlugin
+module.exports.registerMyBannerPlugin = nativeBinding.registerMyBannerPlugin
 module.exports.Assets = nativeBinding.Assets
 module.exports.AsyncDependenciesBlock = nativeBinding.AsyncDependenciesBlock
 module.exports.Chunk = nativeBinding.Chunk

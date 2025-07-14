@@ -10,8 +10,10 @@ crate-type = ["cdylib"]
 rspack_binding_builder        = { workspace = true }
 rspack_binding_builder_macros = { workspace = true }
 
-rspack_core  = { workspace = true }
-rspack_error = { workspace = true }
+rspack_core    = { workspace = true }
+rspack_error   = { workspace = true }
+rspack_hook    = { workspace = true }
+rspack_sources = { workspace = true }
 
 napi                = { workspace = true, features = ["async", "tokio_rt", "serde-json", "anyhow", "napi7", "compat-mode"] }
 napi-derive         = { workspace = true, features = ["compat-mode"] }
