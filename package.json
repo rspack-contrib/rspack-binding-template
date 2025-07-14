@@ -20,8 +20,7 @@
   ],
   "scripts": {
     "prepare": "husky",
-    "build": "pnpm run build:binding",
-    "build:binding": "pnpm run --filter @rspack-template/binding build",
+    "build": "pnpm run --filter @rspack-template/binding build",
     "lint-staged": "lint-staged"
   },
   "dependencies": {

@@ -86,3 +86,7 @@ jobs:
       - name: Build binding
         run: pnpm run build
         working-directory: crates/binding
+
+      - name: Run example - plugin
+        run: node build.js
+        working-directory: examples/plugin
