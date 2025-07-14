@@ -1,5 +1,5 @@
 {
-  "name": "binding",
+  "name": "template-binding",
   "scripts": {
     "build": "napi build"
   },
