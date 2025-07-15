@@ -36,7 +36,7 @@ async fn process_assets(&self, compilation: &mut Compilation) -> Result<()> {
 
 impl Plugin for MyBannerPlugin {
   fn name(&self) -> &'static str {
-    "ExamplePlugin"
+    "MyBannerPlugin"
   }
 
   fn apply(
