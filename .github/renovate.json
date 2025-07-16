@@ -20,7 +20,6 @@
       "groupSlug": "rspack-deps",
       "enabled": true,
       "semanticCommitType": "chore",
-      "rangeStrategy": "pin",
       "prCreation": "not-pending",
       "updateLockFiles": true,
       "postUpdateOptions": ["cargoUpdateLockFile"],
