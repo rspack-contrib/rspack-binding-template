@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
-  "enabledManagers": ["npm"],
+  "enabledManagers": ["npm", "cargo"],
   "packageRules": [
     {
       "matchPackageNames": ["@napi-rs/**"],
@@ -12,6 +12,28 @@
       "matchPackageNames": ["napi", "napi-**"],
       "enabled": false,
       "description": "Disable updates for napi packages"
+    },
+    {
+      "matchPackageNames": ["@rspack/**", "rspack_*"],
+      "excludePackageNames": ["rspack_sources", "rspack_resolver"],
+      "groupName": "Rspack dependencies",
+      "groupSlug": "rspack-deps",
+      "enabled": true,
+      "description": "Group all rspack related packages together"
+    },
+    {
+      "matchManagers": ["cargo", "npm"],
+      "excludePackageNames": [
+        "@napi-rs/**",
+        "napi",
+        "napi-**",
+        "@rspack/**",
+        "rspack_*",
+        "rspack_sources",
+        "rspack_resolver"
+      ],
+      "groupName": "Other dependencies",
+      "groupSlug": "other-deps"
     }
   ],
   "schedule": ["before 6am on monday"],
