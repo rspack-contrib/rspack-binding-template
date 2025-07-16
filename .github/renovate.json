@@ -20,7 +20,11 @@
       "groupSlug": "rspack-deps",
       "enabled": true,
       "semanticCommitType": "chore",
-      "description": "Group all rspack related packages together"
+      "rangeStrategy": "pin",
+      "prCreation": "not-pending",
+      "updateLockFiles": true,
+      "postUpdateOptions": ["cargoUpdateLockFile"],
+      "description": "Group all rspack related packages for coordinated workspace updates"
     },
     {
       "matchManagers": ["cargo", "npm"],
