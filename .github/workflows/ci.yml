@@ -47,6 +47,10 @@ jobs:
       - name: Run cargo clippy
         run: cargo clippy --workspace -- -D warnings
 
+  build-all:
+    name: Build All
+    uses: rspack-toolchain/build/.github/workflows/build.yml@main
+
   node-build:
     runs-on: ubuntu-latest
     name: Node.js Build
