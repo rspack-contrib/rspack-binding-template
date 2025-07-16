@@ -1,49 +1,72 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
-  "enabledManagers": ["npm", "cargo"],
+  "extends": [
+    "config:recommended"
+  ],
+  "enabledManagers": [
+    "npm",
+    "cargo"
+  ],
   "packageRules": [
     {
-      "matchPackageNames": ["@napi-rs/**"],
+      "matchPackageNames": [
+        "@napi-rs/**"
+      ],
       "enabled": false,
       "description": "Disable updates for napi-rs packages"
     },
     {
-      "matchPackageNames": ["napi", "napi-**"],
+      "matchPackageNames": [
+        "napi",
+        "napi-**"
+      ],
       "enabled": false,
       "description": "Disable updates for napi packages"
     },
     {
-      "matchPackageNames": ["@rspack/**", "rspack_*"],
-      "excludePackageNames": ["rspack_sources", "rspack_resolver"],
+      "matchPackageNames": [
+        "@rspack/**",
+        "rspack_*",
+        "!rspack_sources",
+        "!rspack_resolver"
+      ],
       "groupName": "Rspack dependencies",
       "groupSlug": "rspack-deps",
       "enabled": true,
       "semanticCommitType": "chore",
       "prCreation": "not-pending",
       "updateLockFiles": true,
-      "postUpdateOptions": ["cargoUpdateLockFile"],
+      "postUpdateOptions": [
+        "cargoUpdateLockFile"
+      ],
       "description": "Group all rspack related packages for coordinated workspace updates"
     },
     {
-      "matchManagers": ["cargo", "npm"],
-      "excludePackageNames": [
-        "@napi-rs/**",
-        "napi",
-        "napi-**",
-        "@rspack/**",
-        "rspack_*",
-        "rspack_sources",
-        "rspack_resolver"
+      "matchManagers": [
+        "cargo",
+        "npm"
       ],
       "groupName": "Other dependencies",
       "groupSlug": "other-deps",
-      "semanticCommitType": "chore"
+      "semanticCommitType": "chore",
+      "matchPackageNames": [
+        "!@napi-rs/**",
+        "!napi",
+        "!napi-**",
+        "!@rspack/**",
+        "!rspack_*",
+        "!rspack_sources",
+        "!rspack_resolver"
+      ]
     }
   ],
-  "schedule": ["before 6am on monday"],
+  "schedule": [
+    "before 6am on monday"
+  ],
   "timezone": "Asia/Shanghai",
-  "labels": ["dependencies"],
+  "labels": [
+    "dependencies"
+  ],
   "assignees": [],
   "reviewers": [],
   "prConcurrentLimit": 5,
@@ -53,6 +76,8 @@
   "semanticCommitScope": "deps",
   "lockFileMaintenance": {
     "enabled": true,
-    "schedule": ["before 6am on monday"]
+    "schedule": [
+      "before 6am on monday"
+    ]
   }
 }
