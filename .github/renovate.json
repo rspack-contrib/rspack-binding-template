@@ -19,6 +19,7 @@
       "groupName": "Rspack dependencies",
       "groupSlug": "rspack-deps",
       "enabled": true,
+      "semanticCommitType": "chore",
       "description": "Group all rspack related packages together"
     },
     {
@@ -33,7 +34,8 @@
         "rspack_resolver"
       ],
       "groupName": "Other dependencies",
-      "groupSlug": "other-deps"
+      "groupSlug": "other-deps",
+      "semanticCommitType": "chore"
     }
   ],
   "schedule": ["before 6am on monday"],
