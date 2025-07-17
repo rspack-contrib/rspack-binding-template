@@ -49,7 +49,7 @@ jobs:
 
   build-all:
     name: Build All
-    uses: rspack-toolchain/build/.github/workflows/build.yml@main
+    uses: rspack-contrib/rspack-toolchain/.github/workflows/build.yml@main
 
   node-build:
     runs-on: ubuntu-latest
