@@ -20,6 +20,9 @@ napi                = { version = "=3.0.0-beta.9" }
 napi-derive         = { version = "=3.0.0-beta.9" }
 napi-derive-backend = { version = "=2.0.0-beta.9" }
 
+[patch.crates-io]
+mimalloc-rspack        = { git = "https://github.com/h-a-n-a/mimalloc_rust.git", branch = "patch-date-time-flag" }
+rspack-libmimalloc-sys = { git = "https://github.com/h-a-n-a/mimalloc_rust.git", branch = "patch-date-time-flag" }
 
 # Copied from https://github.com/web-infra-dev/rspack/blob/main/Cargo.toml
 
