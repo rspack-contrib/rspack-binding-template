@@ -53,10 +53,11 @@ jobs:
 
   test:
     runs-on: ${{ matrix.os }}
-    name: Node.js Test (${{ matrix.os }})
+    name: Node Test (${{ matrix.os }})
     needs: build
 
     strategy:
+      fail-fast: false
       matrix:
         include:
           - os: ubuntu-latest
