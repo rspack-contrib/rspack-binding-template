@@ -47,24 +47,53 @@ jobs:
       - name: Run cargo clippy
         run: cargo clippy --workspace -- -D warnings
 
-  node-build:
-    runs-on: ubuntu-latest
-    name: Node.js Build
+  build:
+    name: Build
+    uses: rspack-contrib/rspack-toolchain/.github/workflows/build.yml@main
+
+  test:
+    runs-on: ${{ matrix.os }}
+    name: Node Test (${{ matrix.os }})
+    needs: build
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+          - os: macos-latest
+            target: aarch64-apple-darwin
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
+      - name: Get NAPI info
+        id: napi-info
+        uses: rspack-contrib/rspack-toolchain/get-napi-info@main
 
-      - name: Cache Rust dependencies
-        uses: Swatinem/rust-cache@v2
+      - name: Download rspack binding
+        uses: rspack-contrib/rspack-toolchain/download-rspack-binding@main
+        with:
+          target: ${{ matrix.target }}
+          path: ${{ steps.napi-info.outputs.binding-path }}
+
+      - name: Show binding
+        shell: bash
+        run: |
+          echo "Contents of binding directory:"
+          ls -la ${{ steps.napi-info.outputs.binding-path }}
+          echo ""
+          echo "*.node files:"
+          find ${{ steps.napi-info.outputs.binding-path }} -name "*.node" -type f -exec ls -la {} \; || echo "No .node files found"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '22'
 
       - name: Enable corepack
         run: corepack enable
@@ -82,10 +111,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-
-      - name: Build binding
-        run: pnpm run build
-        working-directory: crates/binding
 
       - name: Run example - plugin
         run: node build.js
