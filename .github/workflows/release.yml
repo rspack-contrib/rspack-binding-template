@@ -24,7 +24,7 @@ jobs:
     name: Build
     uses: rspack-contrib/rspack-toolchain/.github/workflows/build.yml@main
     with:
-      napi-build-command: pnpm build --release
+      napi-build-command: pnpm build
 
   test:
     name: Test
@@ -52,6 +52,28 @@ jobs:
           else
             echo "  - 📦 This will PUBLISH packages to npm"
           fi
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Setup pnpm
+        run: corepack prepare
+
+      - name: Cache pnpm dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Get NAPI info
         id: napi-info
