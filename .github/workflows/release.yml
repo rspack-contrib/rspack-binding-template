@@ -113,6 +113,7 @@ jobs:
 
       - name: Release npm binding packages
         run: |
+          npm config set access public
           npm config set provenance true
           pnpm napi pre-publish --no-gh-release -t npm
         working-directory: ${{ steps.napi-info.outputs.binding-path }}
