@@ -23,6 +23,8 @@ jobs:
   build:
     name: Build
     uses: rspack-contrib/rspack-toolchain/.github/workflows/build.yml@main
+    with:
+      napi-build-command: pnpm build --release
 
   test:
     name: Test
