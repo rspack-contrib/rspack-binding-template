@@ -6,7 +6,7 @@ on:
       dry-run:
         description: 'Run in dry-run mode (no actual publishing)'
         required: false
-        default: true
+        default: false
         type: boolean
       npm-tag:
         description: 'NPM tag for publishing'
@@ -27,7 +27,7 @@ jobs:
     name: Build
     uses: rspack-contrib/rspack-toolchain/.github/workflows/build.yml@main
     with:
-      napi-build-command: pnpm build
+      napi-build-command: pnpm build --release
 
   test:
     name: Test
