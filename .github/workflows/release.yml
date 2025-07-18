@@ -1,0 +1,88 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: 'Run in dry-run mode (no actual publishing)'
+        required: false
+        default: true
+        type: boolean
+      npm-tag:
+        description: 'NPM tag for publishing'
+        required: false
+        default: 'latest'
+        type: choice
+        options:
+          - latest
+          - alpha
+          - beta
+          - canary
+
+jobs:
+  build:
+    name: Build
+    uses: rspack-contrib/rspack-toolchain/.github/workflows/build.yml@main
+    with:
+      napi-build-command: pnpm build --release
+
+  test:
+    name: Test
+    uses: ./.github/workflows/test.yml
+
+  release:
+    runs-on: ubuntu-latest
+    name: Release
+    permissions:
+      contents: write
+    needs: [build, test]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Display release mode
+        run: |
+          echo "🚀 Release Configuration:"
+          echo "  - Dry-run mode: ${{ inputs.dry-run }}"
+          echo "  - NPM tag: ${{ inputs.npm-tag || 'latest' }}"
+          if [ "${{ inputs.dry-run }}" == "true" ]; then
+            echo "  - ⚠️  This is a DRY RUN - no packages will be published"
+          else
+            echo "  - 📦 This will PUBLISH packages to npm"
+          fi
+
+      - name: Get NAPI info
+        id: napi-info
+        uses: rspack-contrib/rspack-toolchain/get-napi-info@main
+
+      - name: Download rspack binding
+        uses: rspack-contrib/rspack-toolchain/download-rspack-binding@main
+        with:
+          path: ${{ steps.napi-info.outputs.binding-path }}/artifacts
+
+      - name: List artifacts
+        run: ls -R artifacts
+        working-directory: ${{ steps.napi-info.outputs.binding-path }}
+
+      - name: Create npm dirs
+        run: pnpm napi create-npm-dirs
+        working-directory: ${{ steps.napi-info.outputs.binding-path }}
+
+      - name: Move artifacts
+        run: pnpm napi artifacts
+        working-directory: ${{ steps.napi-info.outputs.binding-path }}
+
+      - name: List npm dirs
+        run: ls -R npm
+        working-directory: ${{ steps.napi-info.outputs.binding-path }}
+
+      - name: Link optionalDependencies in binding package.json
+        run: pnpm napi pre-publish -t npm
+        working-directory: ${{ steps.napi-info.outputs.binding-path }}
+
+      - name: Release npm packages
+        run: |
+          pnpm publish -r --tag ${{ inputs.npm-tag }} --no-git-checks --provenance --access public ${{ inputs.dry-run && '--dry-run' || '' }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

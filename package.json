@@ -1,5 +1,6 @@
 {
   "name": "@rspack-template/core",
+  "version": "0.0.0",
   "homepage": "https://github.com/rspack-contrib/rspack-binding-template",
   "bugs": {
     "url": "https://github.com/rspack-contrib/rspack-binding-template/issues"
@@ -15,8 +16,7 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "lib",
-    "package.json"
+    "lib"
   ],
   "scripts": {
     "prepare": "husky",

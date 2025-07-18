@@ -1,0 +1,69 @@
+name: Test
+
+on:
+  workflow_call:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    name: Node Test (${{ matrix.os }})
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # - os: ubuntu-latest
+          #   target: x86_64-unknown-linux-gnu
+          - os: macos-latest
+            target: aarch64-apple-darwin
+          # - os: windows-latest
+          #   target: x86_64-pc-windows-msvc
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get NAPI info
+        id: napi-info
+        uses: rspack-contrib/rspack-toolchain/get-napi-info@main
+
+      - name: Download rspack binding
+        uses: rspack-contrib/rspack-toolchain/download-rspack-binding@main
+        with:
+          target: ${{ matrix.target }}
+          path: ${{ steps.napi-info.outputs.binding-path }}
+
+      - name: Show binding
+        shell: bash
+        run: |
+          echo "Contents of binding directory:"
+          ls -la ${{ steps.napi-info.outputs.binding-path }}
+          echo ""
+          echo "*.node files:"
+          find ${{ steps.napi-info.outputs.binding-path }} -name "*.node" -type f -exec ls -la {} \; || echo "No .node files found"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Setup pnpm
+        run: corepack prepare
+
+      - name: Cache pnpm dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run example - plugin
+        run: node build.js
+        working-directory: examples/plugin
