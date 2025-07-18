@@ -10,6 +10,14 @@
     "url": "git+https://github.com/rspack-contrib/rspack-binding-template.git",
     "directory": "crates/binding"
   },
+  "main": "index.js",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "index.js",
     "index.d.ts"

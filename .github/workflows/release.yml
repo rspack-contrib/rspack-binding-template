@@ -19,6 +19,9 @@ on:
           - beta
           - canary
 
+env:
+  DEBUG: napi:*
+
 jobs:
   build:
     name: Build
@@ -106,6 +109,6 @@ jobs:
 
       - name: Release npm packages
         run: |
-          pnpm publish -r --tag ${{ inputs.npm-tag }} --no-git-checks --provenance --access public ${{ inputs.dry-run && '--dry-run' || '' }}
+          pnpm publish -r --tag ${{ inputs.npm-tag }} --no-git-checks --no-gh-release --provenance --access public ${{ inputs.dry-run && '--dry-run' || '' }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
