@@ -1,5 +1,4 @@
 packages:
   - 'crates/binding'
-  - 'crates/binding/npm/**'
   - 'examples/plugin'
   - '.'

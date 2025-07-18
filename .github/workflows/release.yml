@@ -19,22 +19,28 @@ on:
           - beta
           - canary
 
+env:
+  DEBUG: napi:*
+
 jobs:
   build:
     name: Build
     uses: rspack-contrib/rspack-toolchain/.github/workflows/build.yml@main
     with:
-      napi-build-command: pnpm build --release
+      napi-build-command: pnpm build
 
   test:
     name: Test
     uses: ./.github/workflows/test.yml
+    needs: build
 
   release:
     runs-on: ubuntu-latest
+    environment: npm
     name: Release
     permissions:
       contents: write
+      id-token: write
     needs: [build, test]
 
     steps:
@@ -51,6 +57,28 @@ jobs:
           else
             echo "  - 📦 This will PUBLISH packages to npm"
           fi
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Setup pnpm
+        run: corepack prepare
+
+      - name: Cache pnpm dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Get NAPI info
         id: napi-info
@@ -77,12 +105,23 @@ jobs:
         run: ls -R npm
         working-directory: ${{ steps.napi-info.outputs.binding-path }}
 
-      - name: Link optionalDependencies in binding package.json
-        run: pnpm napi pre-publish -t npm
+      - name: Create npm token
+        run: |
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Release npm binding packages
+        run: |
+          npm config set access public
+          npm config set provenance true
+          pnpm napi pre-publish --no-gh-release -t npm
         working-directory: ${{ steps.napi-info.outputs.binding-path }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Release npm packages
         run: |
           pnpm publish -r --tag ${{ inputs.npm-tag }} --no-git-checks --provenance --access public ${{ inputs.dry-run && '--dry-run' || '' }}
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

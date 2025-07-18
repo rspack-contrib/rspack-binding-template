@@ -1,6 +1,6 @@
 {
   "name": "@rspack-template/binding",
-  "version": "0.0.0",
+  "version": "0.0.0-canary.0",
   "homepage": "https://github.com/rspack-contrib/rspack-binding-template",
   "bugs": {
     "url": "https://github.com/rspack-contrib/rspack-binding-template/issues"
@@ -9,6 +9,14 @@
     "type": "git",
     "url": "git+https://github.com/rspack-contrib/rspack-binding-template.git",
     "directory": "crates/binding"
+  },
+  "main": "index.js",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    },
+    "./package.json": "./package.json"
   },
   "files": [
     "index.js",
