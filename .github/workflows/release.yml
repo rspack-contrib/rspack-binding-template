@@ -36,6 +36,7 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
+    environment: npm
     name: Release
     permissions:
       contents: write
