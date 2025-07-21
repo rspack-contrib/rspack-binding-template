@@ -87,23 +87,23 @@ jobs:
       - name: Download rspack binding
         uses: rspack-contrib/rspack-toolchain/download-rspack-binding@main
         with:
-          path: ${{ steps.napi-info.outputs.binding-path }}/artifacts
+          path: ${{ steps.napi-info.outputs.binding-directory }}/artifacts
 
       - name: List artifacts
         run: ls -R artifacts
-        working-directory: ${{ steps.napi-info.outputs.binding-path }}
+        working-directory: ${{ steps.napi-info.outputs.binding-directory }}
 
       - name: Create npm dirs
         run: pnpm napi create-npm-dirs
-        working-directory: ${{ steps.napi-info.outputs.binding-path }}
+        working-directory: ${{ steps.napi-info.outputs.binding-directory }}
 
       - name: Move artifacts
         run: pnpm napi artifacts
-        working-directory: ${{ steps.napi-info.outputs.binding-path }}
+        working-directory: ${{ steps.napi-info.outputs.binding-directory }}
 
       - name: List npm dirs
         run: ls -R npm
-        working-directory: ${{ steps.napi-info.outputs.binding-path }}
+        working-directory: ${{ steps.napi-info.outputs.binding-directory }}
 
       - name: Create npm token
         run: |
@@ -116,7 +116,7 @@ jobs:
           npm config set access public
           npm config set provenance true
           pnpm napi pre-publish --no-gh-release -t npm
-        working-directory: ${{ steps.napi-info.outputs.binding-path }}
+        working-directory: ${{ steps.napi-info.outputs.binding-directory }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
