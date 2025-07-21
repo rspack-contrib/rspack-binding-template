@@ -6,7 +6,7 @@ on:
 jobs:
   test:
     runs-on: ${{ matrix.os }}
-    name: test Node.js - ${{ matrix.os }}
+    name: Test Node - ${{ matrix.os }}
 
     strategy:
       fail-fast: false
@@ -31,16 +31,16 @@ jobs:
         uses: rspack-contrib/rspack-toolchain/download-rspack-binding@main
         with:
           target: ${{ matrix.target }}
-          path: ${{ steps.napi-info.outputs.binding-path }}
+          path: ${{ steps.napi-info.outputs.binding-directory }}
 
       - name: Show binding
         shell: bash
         run: |
           echo "Contents of binding directory:"
-          ls -la ${{ steps.napi-info.outputs.binding-path }}
+          ls -la ${{ steps.napi-info.outputs.binding-directory }}
           echo ""
           echo "*.node files:"
-          find ${{ steps.napi-info.outputs.binding-path }} -name "*.node" -type f -exec ls -la {} \; || echo "No .node files found"
+          find ${{ steps.napi-info.outputs.binding-directory }} -name "*.node" -type f -exec ls -la {} \; || echo "No .node files found"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
