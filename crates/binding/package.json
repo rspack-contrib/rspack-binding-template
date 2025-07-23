@@ -27,7 +27,7 @@
     "build": "napi build --platform"
   },
   "devDependencies": {
-    "@napi-rs/cli": "3.0.0-alpha.92",
+    "@napi-rs/cli": "3.0.1",
     "@types/node": "^24.0.12",
     "typescript": "^5.8.3"
   },
