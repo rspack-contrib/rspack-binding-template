@@ -82,7 +82,6 @@ function requireNative() {
       } catch (e) {
         loadErrors.push(e)
       }
-
     } else if (process.arch === 'arm') {
       try {
         return require('./binding.android-arm-eabi.node')
@@ -94,7 +93,6 @@ function requireNative() {
       } catch (e) {
         loadErrors.push(e)
       }
-
     } else {
       loadErrors.push(new Error(`Unsupported architecture on Android ${process.arch}`))
     }
@@ -110,7 +108,6 @@ function requireNative() {
       } catch (e) {
         loadErrors.push(e)
       }
-
     } else if (process.arch === 'ia32') {
       try {
         return require('./binding.win32-ia32-msvc.node')
@@ -122,7 +119,6 @@ function requireNative() {
       } catch (e) {
         loadErrors.push(e)
       }
-
     } else if (process.arch === 'arm64') {
       try {
         return require('./binding.win32-arm64-msvc.node')
@@ -134,22 +130,20 @@ function requireNative() {
       } catch (e) {
         loadErrors.push(e)
       }
-
     } else {
       loadErrors.push(new Error(`Unsupported architecture on Windows: ${process.arch}`))
     }
   } else if (process.platform === 'darwin') {
     try {
-        return require('./binding.darwin-universal.node')
-      } catch (e) {
-        loadErrors.push(e)
-      }
-      try {
-        return require('@rspack-template/binding-darwin-universal')
-      } catch (e) {
-        loadErrors.push(e)
-      }
-
+      return require('./binding.darwin-universal.node')
+    } catch (e) {
+      loadErrors.push(e)
+    }
+    try {
+      return require('@rspack-template/binding-darwin-universal')
+    } catch (e) {
+      loadErrors.push(e)
+    }
     if (process.arch === 'x64') {
       try {
         return require('./binding.darwin-x64.node')
@@ -161,7 +155,6 @@ function requireNative() {
       } catch (e) {
         loadErrors.push(e)
       }
-
     } else if (process.arch === 'arm64') {
       try {
         return require('./binding.darwin-arm64.node')
@@ -173,7 +166,6 @@ function requireNative() {
       } catch (e) {
         loadErrors.push(e)
       }
-
     } else {
       loadErrors.push(new Error(`Unsupported architecture on macOS: ${process.arch}`))
     }
@@ -189,7 +181,6 @@ function requireNative() {
       } catch (e) {
         loadErrors.push(e)
       }
-
     } else if (process.arch === 'arm64') {
       try {
         return require('./binding.freebsd-arm64.node')
@@ -201,7 +192,6 @@ function requireNative() {
       } catch (e) {
         loadErrors.push(e)
       }
-
     } else {
       loadErrors.push(new Error(`Unsupported architecture on FreeBSD: ${process.arch}`))
     }
@@ -209,106 +199,98 @@ function requireNative() {
     if (process.arch === 'x64') {
       if (isMusl()) {
         try {
-        return require('./binding.linux-x64-musl.node')
-      } catch (e) {
-        loadErrors.push(e)
-      }
-      try {
-        return require('@rspack-template/binding-linux-x64-musl')
-      } catch (e) {
-        loadErrors.push(e)
-      }
-
+          return require('./binding.linux-x64-musl.node')
+        } catch (e) {
+          loadErrors.push(e)
+        }
+        try {
+          return require('@rspack-template/binding-linux-x64-musl')
+        } catch (e) {
+          loadErrors.push(e)
+        }
       } else {
         try {
-        return require('./binding.linux-x64-gnu.node')
-      } catch (e) {
-        loadErrors.push(e)
-      }
-      try {
-        return require('@rspack-template/binding-linux-x64-gnu')
-      } catch (e) {
-        loadErrors.push(e)
-      }
-
+          return require('./binding.linux-x64-gnu.node')
+        } catch (e) {
+          loadErrors.push(e)
+        }
+        try {
+          return require('@rspack-template/binding-linux-x64-gnu')
+        } catch (e) {
+          loadErrors.push(e)
+        }
       }
     } else if (process.arch === 'arm64') {
       if (isMusl()) {
         try {
-        return require('./binding.linux-arm64-musl.node')
-      } catch (e) {
-        loadErrors.push(e)
-      }
-      try {
-        return require('@rspack-template/binding-linux-arm64-musl')
-      } catch (e) {
-        loadErrors.push(e)
-      }
-
+          return require('./binding.linux-arm64-musl.node')
+        } catch (e) {
+          loadErrors.push(e)
+        }
+        try {
+          return require('@rspack-template/binding-linux-arm64-musl')
+        } catch (e) {
+          loadErrors.push(e)
+        }
       } else {
         try {
-        return require('./binding.linux-arm64-gnu.node')
-      } catch (e) {
-        loadErrors.push(e)
-      }
-      try {
-        return require('@rspack-template/binding-linux-arm64-gnu')
-      } catch (e) {
-        loadErrors.push(e)
-      }
-
+          return require('./binding.linux-arm64-gnu.node')
+        } catch (e) {
+          loadErrors.push(e)
+        }
+        try {
+          return require('@rspack-template/binding-linux-arm64-gnu')
+        } catch (e) {
+          loadErrors.push(e)
+        }
       }
     } else if (process.arch === 'arm') {
       if (isMusl()) {
         try {
-        return require('./binding.linux-arm-musleabihf.node')
-      } catch (e) {
-        loadErrors.push(e)
-      }
-      try {
-        return require('@rspack-template/binding-linux-arm-musleabihf')
-      } catch (e) {
-        loadErrors.push(e)
-      }
-
+          return require('./binding.linux-arm-musleabihf.node')
+        } catch (e) {
+          loadErrors.push(e)
+        }
+        try {
+          return require('@rspack-template/binding-linux-arm-musleabihf')
+        } catch (e) {
+          loadErrors.push(e)
+        }
       } else {
         try {
-        return require('./binding.linux-arm-gnueabihf.node')
-      } catch (e) {
-        loadErrors.push(e)
-      }
-      try {
-        return require('@rspack-template/binding-linux-arm-gnueabihf')
-      } catch (e) {
-        loadErrors.push(e)
-      }
-
+          return require('./binding.linux-arm-gnueabihf.node')
+        } catch (e) {
+          loadErrors.push(e)
+        }
+        try {
+          return require('@rspack-template/binding-linux-arm-gnueabihf')
+        } catch (e) {
+          loadErrors.push(e)
+        }
       }
     } else if (process.arch === 'riscv64') {
       if (isMusl()) {
         try {
-        return require('./binding.linux-riscv64-musl.node')
-      } catch (e) {
-        loadErrors.push(e)
-      }
-      try {
-        return require('@rspack-template/binding-linux-riscv64-musl')
-      } catch (e) {
-        loadErrors.push(e)
-      }
-
+          return require('./binding.linux-riscv64-musl.node')
+        } catch (e) {
+          loadErrors.push(e)
+        }
+        try {
+          return require('@rspack-template/binding-linux-riscv64-musl')
+        } catch (e) {
+          loadErrors.push(e)
+        }
       } else {
         try {
-        return require('./binding.linux-riscv64-gnu.node')
-      } catch (e) {
-        loadErrors.push(e)
-      }
-      try {
-        return require('@rspack-template/binding-linux-riscv64-gnu')
-      } catch (e) {
-        loadErrors.push(e)
-      }
-
+          return require('./binding.linux-riscv64-gnu.node')
+        } catch (e) {
+          loadErrors.push(e)
+        }
+        try {
+          return require('@rspack-template/binding-linux-riscv64-gnu')
+        } catch (e) {
+          loadErrors.push(e)
+        }
       }
     } else if (process.arch === 'ppc64') {
       try {
@@ -321,7 +303,6 @@ function requireNative() {
       } catch (e) {
         loadErrors.push(e)
       }
-
     } else if (process.arch === 's390x') {
       try {
         return require('./binding.linux-s390x-gnu.node')
@@ -333,9 +314,45 @@ function requireNative() {
       } catch (e) {
         loadErrors.push(e)
       }
-
     } else {
       loadErrors.push(new Error(`Unsupported architecture on Linux: ${process.arch}`))
+    }
+  } else if (process.platform === 'openharmony') {
+    if (process.arch === 'arm64') {
+      try {
+        return require('./binding.linux-arm64-ohos.node')
+      } catch (e) {
+        loadErrors.push(e)
+      }
+      try {
+        return require('@rspack-template/binding-linux-arm64-ohos')
+      } catch (e) {
+        loadErrors.push(e)
+      }
+    } else if (process.arch === 'x64') {
+      try {
+        return require('./binding.linux-x64-ohos.node')
+      } catch (e) {
+        loadErrors.push(e)
+      }
+      try {
+        return require('@rspack-template/binding-linux-x64-ohos')
+      } catch (e) {
+        loadErrors.push(e)
+      }
+    } else if (process.arch === 'arm') {
+      try {
+        return require('./binding.linux-arm-ohos.node')
+      } catch (e) {
+        loadErrors.push(e)
+      }
+      try {
+        return require('@rspack-template/binding-linux-arm-ohos')
+      } catch (e) {
+        loadErrors.push(e)
+      }
+    } else {
+      loadErrors.push(new Error(`Unsupported architecture on OpenHarmony: ${process.arch}`))
     }
   } else {
     loadErrors.push(new Error(`Unsupported OS: ${process.platform}, architecture: ${process.arch}`))
@@ -397,7 +414,6 @@ module.exports.EntryOptionsDTO = nativeBinding.EntryOptionsDTO
 module.exports.ExternalModule = nativeBinding.ExternalModule
 module.exports.JsCompilation = nativeBinding.JsCompilation
 module.exports.JsCompiler = nativeBinding.JsCompiler
-module.exports.JsCompiler = nativeBinding.JsCompiler
 module.exports.JsContextModuleFactoryAfterResolveData = nativeBinding.JsContextModuleFactoryAfterResolveData
 module.exports.JsContextModuleFactoryBeforeResolveData = nativeBinding.JsContextModuleFactoryBeforeResolveData
 module.exports.JsDependencies = nativeBinding.JsDependencies
@@ -405,10 +421,7 @@ module.exports.JsEntries = nativeBinding.JsEntries
 module.exports.JsExportsInfo = nativeBinding.JsExportsInfo
 module.exports.JsModuleGraph = nativeBinding.JsModuleGraph
 module.exports.JsResolver = nativeBinding.JsResolver
-module.exports.JsResolver = nativeBinding.JsResolver
 module.exports.JsResolverFactory = nativeBinding.JsResolverFactory
-module.exports.JsResolverFactory = nativeBinding.JsResolverFactory
-module.exports.JsStats = nativeBinding.JsStats
 module.exports.JsStats = nativeBinding.JsStats
 module.exports.KnownBuildInfo = nativeBinding.KnownBuildInfo
 module.exports.Module = nativeBinding.Module
@@ -418,28 +431,19 @@ module.exports.NativeWatchResult = nativeBinding.NativeWatchResult
 module.exports.NormalModule = nativeBinding.NormalModule
 module.exports.RawExternalItemFnCtx = nativeBinding.RawExternalItemFnCtx
 module.exports.ReadonlyResourceData = nativeBinding.ReadonlyResourceData
-module.exports.ReadonlyResourceData = nativeBinding.ReadonlyResourceData
 module.exports.Sources = nativeBinding.Sources
 module.exports.BuiltinPluginName = nativeBinding.BuiltinPluginName
 module.exports.cleanupGlobalTrace = nativeBinding.cleanupGlobalTrace
-module.exports.cleanupGlobalTrace = nativeBinding.cleanupGlobalTrace
-module.exports.EXPECTED_RSPACK_CORE_VERSION = nativeBinding.EXPECTED_RSPACK_CORE_VERSION
 module.exports.EXPECTED_RSPACK_CORE_VERSION = nativeBinding.EXPECTED_RSPACK_CORE_VERSION
 module.exports.formatDiagnostic = nativeBinding.formatDiagnostic
 module.exports.JsLoaderState = nativeBinding.JsLoaderState
 module.exports.JsRspackSeverity = nativeBinding.JsRspackSeverity
 module.exports.loadBrowserslist = nativeBinding.loadBrowserslist
 module.exports.minify = nativeBinding.minify
-module.exports.minify = nativeBinding.minify
-module.exports.minifySync = nativeBinding.minifySync
 module.exports.minifySync = nativeBinding.minifySync
 module.exports.RawRuleSetConditionType = nativeBinding.RawRuleSetConditionType
 module.exports.registerGlobalTrace = nativeBinding.registerGlobalTrace
-module.exports.registerGlobalTrace = nativeBinding.registerGlobalTrace
 module.exports.RegisterJsTapKind = nativeBinding.RegisterJsTapKind
 module.exports.syncTraceEvent = nativeBinding.syncTraceEvent
-module.exports.syncTraceEvent = nativeBinding.syncTraceEvent
 module.exports.transform = nativeBinding.transform
-module.exports.transform = nativeBinding.transform
-module.exports.transformSync = nativeBinding.transformSync
 module.exports.transformSync = nativeBinding.transformSync
