@@ -1,6 +1,6 @@
 {
   "name": "@rspack-template/binding",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/rspack-contrib/rspack-binding-template",
   "bugs": {
     "url": "https://github.com/rspack-contrib/rspack-binding-template/issues"
