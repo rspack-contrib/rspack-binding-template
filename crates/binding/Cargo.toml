@@ -19,7 +19,8 @@ napi        = { workspace = true, features = ["async", "tokio_rt", "serde-json",
 napi-derive = { workspace = true, features = ["compat-mode"] }
 
 # Enable SWC plugin feature for targets that support it
-[target.'cfg(not(any(target_arch = "wasm32", all(target_os = "windows", target_arch = "x86"), all(target_os = "windows", target_arch = "aarch64"))))'.dependencies]
+# Skip: wasm32-wasip1-threads, i686-pc-windows-msvc, aarch64-pc-windows-msvc, armv7-linux-androideabi, armv7-unknown-linux-gnueabihf
+[target.'cfg(not(any(target_arch = "wasm32", target_arch = "arm", all(target_os = "windows", target_arch = "x86"), all(target_os = "windows", target_arch = "aarch64"))))'.dependencies]
 rspack_binding_builder = { workspace = true, features = ["plugin"] }
 
 [build-dependencies]
