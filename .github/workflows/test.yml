@@ -66,4 +66,4 @@ jobs:
 
       - name: Run example - plugin
         run: node build.js
-        working-directory: examples/plugin
+        working-directory: examples/use-plugin
