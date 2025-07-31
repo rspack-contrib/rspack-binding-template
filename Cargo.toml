@@ -6,15 +6,15 @@ resolver = "2"
 edition = "2021"
 
 [workspace.dependencies]
-rspack_core  = { version = "=0.4.10" }
-rspack_error = { version = "=0.4.10" }
-rspack_hook  = { version = "=0.4.10" }
+rspack_core  = { version = "=0.4.11" }
+rspack_error = { version = "=0.4.11" }
+rspack_hook  = { version = "=0.4.11" }
 
 rspack_sources = { version = "0.4.8" }
 
-rspack_binding_build          = { version = "=0.4.10" }
-rspack_binding_builder        = { version = "=0.4.10" }
-rspack_binding_builder_macros = { version = "=0.4.10" }
+rspack_binding_build          = { version = "=0.4.11" }
+rspack_binding_builder        = { version = "=0.4.11" }
+rspack_binding_builder_macros = { version = "=0.4.11" }
 
 napi        = { version = "=3.1.2" }
 napi-derive = { version = "=3.1.1" }
