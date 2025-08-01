@@ -4,14 +4,14 @@
 
 ## Features
 
-- 🦀 Native Rust speed for plugins
-- 🚀 Supercharge your Rspack builds
+- 🦀 Write your own Rspack plugins and loaders in Rust
 - 🧩 Inherit all Rspack features and JavaScript API
 - 🛡️ Secure supply chain with npm provenance
-- 🟢 Zero compromise, no limits
 - 📦 Effortless publishing: just set your `NPM_TOKEN`
 
-📚 [Guide](https://rspack-contrib.github.io/rspack-rust-book/custom-binding/getting-started/index.html)
+## Quick Start
+
+📖 **[Create custom binding](https://rspack-contrib.github.io/rspack-rust-book/custom-binding/getting-started/index.html)**
 
 ## Why?
 
@@ -20,6 +20,8 @@ Rspack achieves high performance by being written in Rust, but using its JavaScr
 _Rspack Custom Binding_ allows you to extend Rspack directly with native Rust code, avoiding the JavaScript layer and unlocking full performance and flexibility.
 
 With custom binding, you can still use the familiar JavaScript API (`@rspack/core`), but your custom logic runs natively, combining the best of both worlds.
+
+Check out [rationale](https://rspack-contrib.github.io/rspack-rust-book/custom-binding/getting-started/rationale.html) for more details.
 
 ## Supported Platforms
 
