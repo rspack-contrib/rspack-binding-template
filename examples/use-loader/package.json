@@ -1,0 +1,7 @@
+{
+  "name": "plugin",
+  "private": true,
+  "dependencies": {
+    "@rspack-template/core": "workspace:*"
+  }
+}
