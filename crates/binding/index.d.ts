@@ -7,6 +7,8 @@ export declare class ExternalObject<T> {
     [K: symbol]: T
   }
 }
+export declare function registerMyBannerLoaderPlugin(): void
+
 export declare function registerMyBannerPlugin(): void
 export declare class Assets {
   keys(): Array<string>
@@ -1064,6 +1066,11 @@ export interface JsRsdoctorSideEffect {
   variable?: number
 }
 
+export interface JsRsdoctorSourceMapFeatures {
+  cheap?: boolean
+  module?: boolean
+}
+
 export interface JsRsdoctorSourcePosition {
   line?: number
   column?: number
@@ -1417,8 +1424,11 @@ export interface NativeWatcherOptions {
   followSymlinks?: boolean
   pollInterval?: number
   aggregateTimeout?: number
-  /** A function that will be called with the path of a file or directory that is ignored. */
-  ignored?: (path: string) => boolean
+  /**
+   * The ignored paths for the watcher.
+   * It can be a single path, an array of paths, or a regular expression.
+   */
+  ignored?: string | string[] | RegExp
 }
 
 export interface NodeFsStats {
@@ -2407,6 +2417,7 @@ export interface RawResolveTsconfigOptions {
 export interface RawRsdoctorPluginOptions {
   moduleGraphFeatures: boolean | Array<'graph' | 'ids' | 'sources'>
   chunkGraphFeatures: boolean | Array<'graph' | 'assets'>
+  sourceMapFeatures?: { module?: boolean; cheap?: boolean } | undefined
 }
 
 export interface RawRslibPluginOptions {

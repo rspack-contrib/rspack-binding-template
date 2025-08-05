@@ -8,10 +8,25 @@ const compiler = rspack({
   entry: {
     main: './src/index.js',
   },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: [
+          {
+            loader: 'builtin:my-banner-loader',
+          },
+        ],
+      },
+    ],
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
   },
-  plugins: [new rspack.MyBannerPlugin()],
+  plugins: [
+    // Adds `builtin:my-banner-loader`
+    new rspack.MyBannerLoaderPlugin(),
+  ],
 });
 
 compiler.run((err, stats) => {

@@ -10,8 +10,16 @@ declare class MyBannerPlugin {
   constructor(banner: string);
 }
 
+/**
+ * MyBannerLoaderPlugin class that adds a custom banner loader (builtin:my-banner-loader) to Rspack.
+ */
+declare class MyBannerLoaderPlugin {
+  constructor();
+}
+
 declare const core: typeof RspackCore & {
   MyBannerPlugin: typeof MyBannerPlugin;
+  MyBannerLoaderPlugin: typeof MyBannerLoaderPlugin;
 };
 
 export = core;
