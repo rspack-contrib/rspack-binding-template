@@ -393,6 +393,7 @@ if (!nativeBinding) {
 }
 
 module.exports = nativeBinding
+module.exports.registerMyBannerLoaderPlugin = nativeBinding.registerMyBannerLoaderPlugin
 module.exports.registerMyBannerPlugin = nativeBinding.registerMyBannerPlugin
 module.exports.Assets = nativeBinding.Assets
 module.exports.AsyncDependenciesBlock = nativeBinding.AsyncDependenciesBlock

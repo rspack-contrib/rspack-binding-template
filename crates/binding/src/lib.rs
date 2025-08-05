@@ -1,3 +1,4 @@
+mod loader;
 mod plugin;
 
 use napi::bindgen_prelude::*;
@@ -29,3 +30,11 @@ register_plugin!("MyBannerPlugin", |_env: Env, options: Unknown<'_>| {
     .to_string();
   Ok(Box::new(plugin::MyBannerPlugin::new(banner)) as BoxPlugin)
 });
+
+// Export a plugin named `MyBannerLoaderPlugin`.
+register_plugin!(
+  "MyBannerLoaderPlugin",
+  |_env: Env, _options: Unknown<'_>| {
+    Ok(Box::new(loader::MyBannerLoaderPlugin::new()) as BoxPlugin)
+  }
+);
