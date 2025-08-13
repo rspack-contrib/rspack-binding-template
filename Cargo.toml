@@ -6,10 +6,13 @@ resolver = "2"
 edition = "2021"
 
 [workspace.dependencies]
+rspack_cacheable   = { version = "=0.5.0-beta.0" }
+rspack_collections = { version = "=0.5.0-beta.0" }
 rspack_core  = { version = "=0.5.0-beta.0" }
 rspack_error = { version = "=0.5.0-beta.0" }
 rspack_hook  = { version = "=0.5.0-beta.0" }
 
+async-trait    = { version = "0.1" }
 rspack_sources = { version = "0.4.8" }
 
 rspack_binding_build          = { version = "=0.5.0-beta.0" }

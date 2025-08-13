@@ -1,4 +1,5 @@
 packages:
   - 'crates/binding'
   - 'examples/use-plugin'
+  - 'examples/use-loader'
   - '.'
