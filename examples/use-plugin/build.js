@@ -21,4 +21,5 @@ compiler.run((err, stats) => {
     console.error(err);
   }
   console.info(stats.toString({ colors: true }));
+  compiler.close(() => {})
 });
