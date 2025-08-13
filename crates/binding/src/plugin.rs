@@ -1,8 +1,6 @@
 use std::sync::Arc;
 
-use rspack_core::{
-  ApplyContext, Compilation, CompilationProcessAssets, CompilerOptions, Plugin, PluginContext,
-};
+use rspack_core::{ApplyContext, Compilation, CompilationProcessAssets, Plugin};
 use rspack_error::Result;
 use rspack_hook::{plugin, plugin_hook};
 use rspack_sources::{ConcatSource, RawSource, SourceExt};
@@ -39,13 +37,8 @@ impl Plugin for MyBannerPlugin {
     "MyBannerPlugin"
   }
 
-  fn apply(
-    &self,
-    ctx: PluginContext<&mut ApplyContext>,
-    _options: &CompilerOptions,
-  ) -> rspack_error::Result<()> {
+  fn apply(&self, ctx: &mut ApplyContext) -> rspack_error::Result<()> {
     ctx
-      .context
       .compilation_hooks
       .process_assets
       .tap(process_assets::new(self));
