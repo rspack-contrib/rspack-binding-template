@@ -42,6 +42,7 @@ impl rspack_collections::Identifiable for MyBannerLoader {
   }
 }
 
+/// A plugin that provides the `builtin:my-banner-loader` loader to Rspack
 #[plugin]
 #[derive(Debug)]
 pub struct MyBannerLoaderPlugin;
@@ -52,6 +53,7 @@ impl MyBannerLoaderPlugin {
   }
 }
 
+/// Resolves the `builtin:my-banner-loader` loader
 #[plugin_hook(NormalModuleFactoryResolveLoader for MyBannerLoaderPlugin, tracing = false)]
 pub(crate) async fn resolve_loader(
   &self,
