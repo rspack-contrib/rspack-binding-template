@@ -19,7 +19,14 @@ const compiler = rspack({
 compiler.run((err, stats) => {
   if (err) {
     console.error(err);
+    process.exit(1)
   }
   console.info(stats.toString({ colors: true }));
-  compiler.close(() => {})
+  compiler.close((err) => {
+    if (err) {
+      console.error(err)
+      process.exit(1)
+    }
+    process.exit(0)
+  })
 });
