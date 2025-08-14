@@ -22,6 +22,7 @@ compiler.run((err, stats) => {
     process.exit(1)
   }
   console.info(stats.toString({ colors: true }));
+  process.exit(0)
   compiler.close((err) => {
     if (err) {
       console.error(err)
