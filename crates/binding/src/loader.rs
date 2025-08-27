@@ -1,5 +1,6 @@
 use std::sync::Arc;
 
+use rspack_collections::Identifier;
 use rspack_core::{NormalModuleFactoryResolveLoader, RunnerContext};
 use rspack_error::Result;
 use rspack_hook::{plugin, plugin_hook};
@@ -33,6 +34,10 @@ impl rspack_core::Loader<RunnerContext> for MyBannerLoader {
       loader_context.finish_with_empty();
     }
     Ok(())
+  }
+
+  fn identifier(&self) -> Identifier {
+    Identifier::from("builtin:my-banner-loader")
   }
 }
 
