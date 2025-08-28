@@ -19,6 +19,10 @@ impl MyBannerLoader {
 #[rspack_cacheable::cacheable_dyn]
 #[async_trait::async_trait]
 impl rspack_core::Loader<RunnerContext> for MyBannerLoader {
+  fn identifier(&self) -> rspack_collections::Identifier {
+    rspack_collections::Identifier::from("builtin:my-banner-loader")
+  }
+
   async fn run(
     &self,
     loader_context: &mut rspack_core::LoaderContext<RunnerContext>,
@@ -33,12 +37,6 @@ impl rspack_core::Loader<RunnerContext> for MyBannerLoader {
       loader_context.finish_with_empty();
     }
     Ok(())
-  }
-}
-
-impl rspack_collections::Identifiable for MyBannerLoader {
-  fn identifier(&self) -> rspack_collections::Identifier {
-    rspack_collections::Identifier::from("builtin:my-banner-loader")
   }
 }
 
