@@ -9,7 +9,7 @@
     "type": "git",
     "url": "git+https://github.com/rspack-contrib/rspack-binding-template.git"
   },
-  "packageManager": "pnpm@10.15.1",
+  "packageManager": "pnpm@10.16.1",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "exports": {
