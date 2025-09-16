@@ -45,7 +45,11 @@
       "aarch64-pc-windows-msvc",
       "armv7-linux-androideabi",
       "armv7-unknown-linux-gnueabihf",
-      "aarch64-linux-android"
+      "aarch64-linux-android",
+      "x86_64-unknown-freebsd",
+      "aarch64-unknown-freebsd",
+      "riscv64gc-unknown-linux-gnu",
+      "riscv64gc-unknown-linux-musl"
     ]
   }
 }
