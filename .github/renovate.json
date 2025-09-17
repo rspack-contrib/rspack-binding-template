@@ -34,7 +34,6 @@
       "groupSlug": "rspack-deps",
       "enabled": true,
       "semanticCommitType": "chore",
-      "prCreation": "not-pending",
       "postUpdateOptions": [
         "cargoUpdateLockFile"
       ],
