@@ -26,10 +26,10 @@ jobs:
 
       - name: Get NAPI info
         id: napi-info
-        uses: rspack-contrib/rspack-toolchain/get-napi-info@v1
+        uses: rspack-contrib/rspack-toolchain/get-napi-info@v1.0.4-canary.0
 
       - name: Download rspack binding
-        uses: rspack-contrib/rspack-toolchain/download-rspack-binding@v1
+        uses: rspack-contrib/rspack-toolchain/download-rspack-binding@v1.0.4-canary.0
         with:
           target: ${{ matrix.target }}
           path: ${{ steps.napi-info.outputs.binding-directory }}
